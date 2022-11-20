@@ -111,7 +111,7 @@ class ByteOperationsMixin(_ImplByteOperationsMixin):
         elif not order.is_valid_load_order():
             raise MemoryOrderError(OpType.LOAD, order, is_fail=False)
         # perform operation
-        result = bytes(self._core.width)
+        result = bytearray(self._core.width)
         with PyBuffer(result, writeable=True, force=True) as res_buf:
             # modifying result contents directly is fine in this case
             fp(self._core.address, order.value, res_buf.address)
